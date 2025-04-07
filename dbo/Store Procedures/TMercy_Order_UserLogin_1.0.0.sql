@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[TMercy_Order_UserLogin_1.0.0]
+﻿CREATE PROCEDURE [dbo].[MercyCafe_Main_AdminLogin_1.0.0]
     @AdminName NVARCHAR(50) = '',
     @Password NVARCHAR(255) = ''
 AS

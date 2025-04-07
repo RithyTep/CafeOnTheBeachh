@@ -5,3 +5,5 @@ CREATE TABLE [dbo].[Admin] (
     [CreatedOn] DATETIME DEFAULT GETDATE(),
     [ModifiedOn] DATETIME DEFAULT GETDATE()
 );
+
+CREATE NONCLUSTERED INDEX IDX_Admin_AdminName ON [dbo].[Admin]([AdminName]);

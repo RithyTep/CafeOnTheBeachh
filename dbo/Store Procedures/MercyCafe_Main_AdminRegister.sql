@@ -1,4 +1,4 @@
-CREATE PROCEDURE [dbo].[Coloris_Common_AdminRegister_1.0]
+CREATE PROCEDURE [dbo].[MercyCafe_Main_AdminRegister_1.0.0]
     @AdminName NVARCHAR(50) = '',
     @Password NVARCHAR(255) = ''
 AS
@@ -6,7 +6,7 @@ BEGIN
 
     IF EXISTS (SELECT 1 FROM [Admin] WITH(NOLOCK) WHERE AdminName = @AdminName)
     BEGIN
-        SELECT -1 AS ErrorCode, 'account exists' AS ErrorMessage;
+        SELECT 117 AS ErrorCode, 'Admin already exists' AS ErrorMessage;
         RETURN;
     END
 
