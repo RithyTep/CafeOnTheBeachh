@@ -1,19 +1,19 @@
 CREATE OR ALTER PROCEDURE [dbo].[MercyCafe_Product_GetCoffee_1.0.0]
-    @AdminId INT,
+    @CustomerId INT,
     @CoffeeId INT
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    IF NOT EXISTS (SELECT 1 FROM [dbo].[Admin] WHERE [AdminId] = @AdminId)
+    IF NOT EXISTS (SELECT 1 FROM [dbo].[Customer] WHERE [CustomerId] = @CustomerId)
     BEGIN
-        SELECT 105 AS ErrorCode, 'Invalid Admin Id' AS ErrorMessage;
+        SELECT 105 AS ErrorCode, 'Invalid Customer Id' AS ErrorMessage;
         RETURN;
     END
 
     IF @CoffeeId <> 0 AND NOT EXISTS (SELECT 1 FROM [Product].[dbo].[Product] 
                   WHERE [Id] = @CoffeeId
-                  AND [AdminId] = @AdminId)
+                  AND [CustomerId] = @CustomerId)
     BEGIN
         SELECT 119 AS ErrorCode, 'Coffee not found' AS ErrorMessage;
         RETURN;
@@ -23,7 +23,7 @@ BEGIN
         0 AS ErrorCode,
         'Success' AS ErrorMessage,
         [Id],
-        [AdminId],
+        [CustomerId],
         [CoffeeName],
         [Description],
         [ImageUrl],
@@ -40,5 +40,5 @@ BEGIN
         [CreatedOn]
     FROM [Product].[dbo].[Product]
     WHERE [Id] = @CoffeeId OR @CoffeeId = 0
-    AND [AdminId] = @AdminId;
+    AND [CustomerId] = @CustomerId;
 END

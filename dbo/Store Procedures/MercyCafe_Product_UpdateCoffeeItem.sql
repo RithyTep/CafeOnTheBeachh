@@ -1,5 +1,5 @@
 CREATE OR ALTER PROCEDURE [dbo].[MercyCafe_Product_UpdateCoffeeItem_1.0.0]
-    @AdminId INT,
+    @CustomerId INT,
     @CoffeeId INT,
     @CoffeeName NVARCHAR(100),
     @Description NVARCHAR(MAX) = NULL,
@@ -32,7 +32,7 @@ BEGIN
         [ModifyBy]           = ISNULL(NULLIF(@ModifyBy, ''), [ModifyBy]),
         [ModifyOn]           = ISNULL(@ModifyOn, GETDATE())
     WHERE 
-        [AdminId] = @AdminId 
+        [CustomerId] = @CustomerId 
         AND [Id] = @CoffeeId;
 
     SELECT 0 AS [ErrorCode], 'success' AS [ErrorMessage];

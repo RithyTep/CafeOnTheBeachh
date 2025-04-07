@@ -1,6 +1,6 @@
 CREATE TABLE [dbo].[Product] (
     [Id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-    [AdminId] INT NOT NULL,
+    [CustomerId] INT NOT NULL,
     [CoffeeName] NVARCHAR(100) NOT NULL,
     [Description] NVARCHAR(MAX) NULL,
     [ImageUrl] NVARCHAR(MAX) NULL,
@@ -17,5 +17,5 @@ CREATE TABLE [dbo].[Product] (
     [CreatedOn] DATETIME NOT NULL
 );
 
-CREATE UNIQUE INDEX IX_Product_AdminId_CoffeeName
-ON dbo.Product(AdminId, CoffeeName);
+CREATE UNIQUE INDEX IX_Product_CustomerId_CoffeeName
+ON dbo.Product(CustomerId, CoffeeName);

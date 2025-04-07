@@ -1,5 +1,5 @@
 CREATE OR ALTER PROCEDURE [dbo].[MercyCafe_Product_CreateCoffeeItem_1.0.0]
-    @AdminId INT,
+    @CustomerId INT,
     @CoffeeName NVARCHAR(100),
     @Description NVARCHAR(MAX) = NULL,
     @ImageUrl NVARCHAR(MAX) = NULL,
@@ -18,9 +18,9 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    IF NOT EXISTS (SELECT 1 FROM [Main].[dbo].[Admin] WHERE [AdminId] = @AdminId)
+    IF NOT EXISTS (SELECT 1 FROM [Main].[dbo].[Customer] WHERE [CustomerId] = @CustomerId)
     BEGIN
-        SELECT 105 AS ErrorCode, 'Invalid Admin Id' AS ErrorMessage;
+        SELECT 105 AS ErrorCode, 'Invalid Customer Id' AS ErrorMessage;
         RETURN;
     END
 
@@ -32,7 +32,7 @@ BEGIN
     END
 
     INSERT INTO [Product].[dbo].[Product] (
-        [AdminId],
+        [CustomerId],
         [CoffeeName],
         [Description],
         [ImageUrl],
@@ -49,7 +49,7 @@ BEGIN
         [CreatedOn]
     )
     VALUES (
-        @AdminId,
+        @CustomerId,
         @CoffeeName,
         @Description,
         @ImageUrl,
