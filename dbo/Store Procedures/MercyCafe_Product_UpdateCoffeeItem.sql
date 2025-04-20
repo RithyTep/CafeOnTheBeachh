@@ -1,39 +1,39 @@
 CREATE OR ALTER PROCEDURE [dbo].[MercyCafe_Product_UpdateCoffeeItem_1.0.0]
-    @CustomerId INT,
-    @CoffeeId INT,
-    @CoffeeName NVARCHAR(100),
-    @Description NVARCHAR(MAX) = NULL,
-    @Price DECIMAL(19,6) = 0,
-    @ImageUrl NVARCHAR(MAX) = NULL,
-    @SpecialInstructions NVARCHAR(255) = NULL,
-    @IsAvailable BIT = 0,
-    @Status BIT = 1,
-    @Category NVARCHAR(50) = NULL,
-    @Type NVARCHAR(50) = NULL,
-    @Ingredients NVARCHAR(MAX) = NULL,
-    @ModifyBy NVARCHAR(100) = NULL,
-    @ModifyOn DATETIME = NULL
-AS
-BEGIN
+    @customerId INT,
+    @coffeeId INT,
+    @coffeeName NVARCHAR(100),
+    @description NVARCHAR(MAX) = NULL,
+    @price DECIMAL(19,6) = 0,
+    @imageUrl NVARCHAR(MAX) = NULL,
+    @specialInstructions NVARCHAR(255) = NULL,
+    @isAvailable BIT = 0,
+    @status BIT = 1,
+    @category NVARCHAR(50) = NULL,
+    @type NVARCHAR(50) = NULL,
+    @ingredients NVARCHAR(MAX) = NULL,
+    @modifyBy NVARCHAR(100) = NULL,
+    @modifyOn DATETIME = NULL
+  AS
+  BEGIN
     SET NOCOUNT ON;
 
     UPDATE [Product].[dbo].[Product]
     SET 
-        [CoffeeName]         = ISNULL(NULLIF(@CoffeeName, ''), [CoffeeName]),
-        [Description]        = ISNULL(NULLIF(@Description, ''), [Description]),
-        [Price]              = IIF(@Price = 0, [Price], @Price),
-        [ImageUrl]           = ISNULL(NULLIF(@ImageUrl, ''), [ImageUrl]),
-        [SpecialInstructions]= ISNULL(NULLIF(@SpecialInstructions, ''), [SpecialInstructions]),
-        [IsAvailable]        = @IsAvailable,
-        [Status]             = @Status,
-        [Category]           = ISNULL(NULLIF(@Category, ''), [Category]),
-        [Type]               = ISNULL(NULLIF(@Type, ''), [Type]),
-        [Ingredients]        = ISNULL(NULLIF(@Ingredients, ''), [Ingredients]),
-        [ModifyBy]           = ISNULL(NULLIF(@ModifyBy, ''), [ModifyBy]),
-        [ModifyOn]           = ISNULL(@ModifyOn, GETDATE())
+      [CoffeeName]         = ISNULL(NULLIF(@coffeeName, ''), [CoffeeName]),
+      [Description]        = ISNULL(NULLIF(@description, ''), [Description]),
+      [Price]              = IIF(@price = 0, [Price], @price),
+      [ImageUrl]           = ISNULL(NULLIF(@imageUrl, ''), [ImageUrl]),
+      [SpecialInstructions]= ISNULL(NULLIF(@specialInstructions, ''), [SpecialInstructions]),
+      [IsAvailable]        = @isAvailable,
+      [Status]             = @status,
+      [Category]           = ISNULL(NULLIF(@category, ''), [Category]),
+      [Type]               = ISNULL(NULLIF(@type, ''), [Type]),
+      [Ingredients]        = ISNULL(NULLIF(@ingredients, ''), [Ingredients]),
+      [ModifyBy]           = ISNULL(NULLIF(@modifyBy, ''), [ModifyBy]),
+      [ModifyOn]           = ISNULL(@modifyOn, GETDATE())
     WHERE 
-        [CustomerId] = @CustomerId 
-        AND [Id] = @CoffeeId;
+      [CustomerId] = @customerId 
+      AND [Id] = @coffeeId;
 
     SELECT 0 AS [ErrorCode], 'success' AS [ErrorMessage];
-END;
+  END;
